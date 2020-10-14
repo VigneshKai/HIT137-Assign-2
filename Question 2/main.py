@@ -22,7 +22,7 @@ ExamScore = 0
 
 while game_status == 'start':
         win = pygame.display.set_mode((800,600))
-        pygame.display.set_caption("Last Minute Simulator")
+        pygame.display.set_caption("Exam Simulator")
         x = 250
         y = 250
         width = 350
