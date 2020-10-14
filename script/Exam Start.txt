@@ -1,0 +1,5 @@
+Welcome to the Exam
+Each question is randomly generated
+All are multiple choice
+Some questions are weighted differently
+Good Luck!

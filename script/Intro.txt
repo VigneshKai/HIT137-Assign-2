@@ -1,0 +1,8 @@
+Seems you're 20 minutes late
+Luckily we're permitting late students 
+or else you would've lost the game already
+Please state your name
+Question! 4 : What is your name? 
+David
+Gordon
+Igor
