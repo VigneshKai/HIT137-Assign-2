@@ -1,13 +1,12 @@
 import pygame
-from pygame.constants import (
-    MOUSEBUTTONDOWN, QUIT, MOUSEMOTION, KEYDOWN
-)
+import os
 import random
-
+filepath = os.path.abspath(__file__)
+filedir = os.path.dirname(filepath)
 pygame.init()
 pygame.font.init()
 pygame.mixer.init()
-pygame.mixer.music.load("music\Persona 3 OST - During the Test (Extended).mp3")
+pygame.mixer.music.load(str('Music\Persona 3 OST - During the Test (Extended).mp3'))
 game_status = 'Exam Question 1'
 scriptLine = 0
 questionLine = 0
@@ -351,6 +350,7 @@ while game_status == 'Exam Question 1':
                                 rightJingle.play(0)
                                 generator = 0 
                                 ExamScore = ExamScore + int(questionsList[4])
+                                game_status = 'Exam Question 2'
                         else:
                                 wrongJingle.play(0)
                                 generator = 0 
@@ -361,14 +361,13 @@ while game_status == 'Exam Question 1':
                                 rightJingle.play(0)
                                 generator = 0 
                                 ExamScore = ExamScore + int(questionsList[4])
+                                game_status = 'Exam Question 2'
                         else:
                                 wrongJingle.play(0)
                                 generator = 0 
                                 game_status = 'Exam Question 2'
                                 
                                 
-                           
-
 while game_status == 'Exam Question 2':
         while generator != 1:
                 script = open('script/Exam questions/' + game_status +'.txt', 'r')
@@ -421,9 +420,11 @@ while game_status == 'Exam Question 2':
                         if rightAnswerNo == 1:
                                 rightJingle.play(0)
                                 ExamScore = ExamScore + int(questionsList[4])
+                                generator = 0
                                 game_status = 'Exam Question 3'
                         else:
                                 wrongJingle.play(0)
+                                generator = 0
                                 game_status = 'Exam Question 3'
                                 
                             
@@ -431,19 +432,270 @@ while game_status == 'Exam Question 2':
                         if rightAnswerNo == 2:
                                 rightJingle.play(0)
                                 ExamScore = ExamScore + int(questionsList[4])
+                                generator = 0
+                                game_status = 'Exam Question 3'
                         else:
                                 wrongJingle.play(0)
+                                generator = 0
                                 game_status = 'Exam Question 3'
                             
                     elif 500 > mousex > 50  and ((qboxPosy + 200) + 50) > mousey > (qboxPosy + 200):
                         if rightAnswerNo == 3:
                                 rightJingle.play(0)
                                 ExamScore = ExamScore + int(questionsList[4])
+                                generator = 0
+                                game_status = 'Exam Question 4'
                         else:
                                 wrongJingle.play(0)
-                                game_status = 'Exam Question 3'                          
-      
+                                generator = 0
+                                game_status = 'Exam Question 4'
+
+                                                          
+
+while game_status == 'Exam Question 3':
+        while generator != 1:
+                script = open('script/Exam questions/' + game_status +'.txt', 'r')
+                lines = script.readlines()
+                randNo = random.randint(0,2)
+                questionsList = lines[randNo].split(', ')
+                generator = 1
+                print(questionsList)
+        win = pygame.display.set_mode((800,600))
         
+        qBoxWidth = 500
+        qBoxLength = 50
+        qBoxPosX = 50
+        qboxPosy = 330
+        pygame.draw.rect(win,(255,0,0), (qBoxPosX, qboxPosy, qBoxWidth, qBoxLength))
+        pygame.draw.rect(win,(255,0,0), (qBoxPosX, (qboxPosy + 100), qBoxWidth, qBoxLength))
+        pygame.draw.rect(win,(255,0,0), (qBoxPosX, (qboxPosy + 200), qBoxWidth, qBoxLength))
+        font = pygame.font.Font('freesansbold.ttf', 32)
+        win.blit(font.render(questionsList[0], True, (255,255,255)),(50,230))
+        questionImg = pygame.transform.scale(pygame.image.load('pics/' + questionsList[5].rstrip('\n')), (269, 187))
+        win.blit(questionImg,(50,25))
+        if ' - right' in questionsList[1]:
+                rightAnswer = questionsList[1].replace(" - right", "")
+                win.blit(font.render(questionsList[1].replace(" - right", ""), True, (255,255,255)),(50,330))
+                rightAnswerNo = 1
+        else:
+                win.blit(font.render(questionsList[1], True, (255,255,255)),(50,330))
+
+        if ' - right' in questionsList[2]:
+                rightAnswer = questionsList[2].replace(" - right", "")
+                win.blit(font.render(questionsList[2].replace(" - right", ""), True, (255,255,255)),(50,430))
+                rightAnswerNo = 2
+        else:
+                win.blit(font.render(questionsList[2], True, (255,255,255)),(50,430))
+                
+        if ' - right' in questionsList[3]:
+                rightAnswer = questionsList[3].replace(" - right", "")
+                win.blit(font.render(questionsList[3].replace(" - right", ""), True, (255,255,255)),(50,530))
+                rightAnswerNo = 3
+        else:
+                win.blit(font.render(questionsList[3], True, (255,255,255)),(50,530))
+                
+        pygame.display.update()
+        for event in pygame.event.get(): 
+                if event.type == pygame.MOUSEBUTTONDOWN:
+                    mousex, mousey = event.pos
+                    print(str(mousex) +','+ str(mousey))
+                    print(game_status)  
+                    if 500 > mousex > 50  and (qboxPosy + 50) > mousey > qboxPosy:
+                        if rightAnswerNo == 1:
+                                rightJingle.play(0)
+                                ExamScore = ExamScore + int(questionsList[4])
+                                generator = 0
+                                game_status = 'Exam Question 4'
+                        else:
+                                wrongJingle.play(0)
+                                generator = 0
+                                game_status = 'Exam Question 4'
+                                
+                            
+                    elif 500 > mousex > 50  and ((qboxPosy + 100) + 50) > mousey > (qboxPosy + 100):
+                        if rightAnswerNo == 2:
+                                rightJingle.play(0)
+                                ExamScore = ExamScore + int(questionsList[4])
+                                generator = 0
+                                game_status = 'Exam Question 4'
+                        else:
+                                wrongJingle.play(0)
+                                generator = 0
+                                game_status = 'Exam Question 4'
+                            
+                    elif 500 > mousex > 50  and ((qboxPosy + 200) + 50) > mousey > (qboxPosy + 200):
+                        if rightAnswerNo == 3:
+                                rightJingle.play(0)
+                                ExamScore = ExamScore + int(questionsList[4])
+                                generator = 0
+                                game_status = 'Exam Question 4'
+                        else:
+                                wrongJingle.play(0)
+                                generator = 0
+                                game_status = 'Exam Question 4'
+
+                                
+
+while game_status == 'Exam Question 4':
+        while generator != 1:
+                script = open('script/Exam questions/' + game_status +'.txt', 'r')
+                lines = script.readlines()
+                randNo = random.randint(0,2)
+                questionsList = lines[randNo].split(', ')
+                generator = 1
+                print(questionsList)
+        win = pygame.display.set_mode((800,600))
+        
+        qBoxWidth = 500
+        qBoxLength = 50
+        qBoxPosX = 50
+        qboxPosy = 330
+        pygame.draw.rect(win,(255,0,0), (qBoxPosX, qboxPosy, qBoxWidth, qBoxLength))
+        pygame.draw.rect(win,(255,0,0), (qBoxPosX, (qboxPosy + 100), qBoxWidth, qBoxLength))
+        pygame.draw.rect(win,(255,0,0), (qBoxPosX, (qboxPosy + 200), qBoxWidth, qBoxLength))
+        font = pygame.font.Font('freesansbold.ttf', 32)
+        win.blit(font.render(questionsList[0], True, (255,255,255)),(50,230))
+        questionImg = pygame.transform.scale(pygame.image.load('pics/' + questionsList[5].rstrip('\n')), (269, 187))
+        win.blit(questionImg,(50,25))
+        if ' - right' in questionsList[1]:
+                rightAnswer = questionsList[1].replace(" - right", "")
+                win.blit(font.render(questionsList[1].replace(" - right", ""), True, (255,255,255)),(50,330))
+                rightAnswerNo = 1
+        else:
+                win.blit(font.render(questionsList[1], True, (255,255,255)),(50,330))
+
+        if ' - right' in questionsList[2]:
+                rightAnswer = questionsList[2].replace(" - right", "")
+                win.blit(font.render(questionsList[2].replace(" - right", ""), True, (255,255,255)),(50,430))
+                rightAnswerNo = 2
+        else:
+                win.blit(font.render(questionsList[2], True, (255,255,255)),(50,430))
+                
+        if ' - right' in questionsList[3]:
+                rightAnswer = questionsList[3].replace(" - right", "")
+                win.blit(font.render(questionsList[3].replace(" - right", ""), True, (255,255,255)),(50,530))
+                rightAnswerNo = 3
+        else:
+                win.blit(font.render(questionsList[3], True, (255,255,255)),(50,530))
+                
+        pygame.display.update()
+        for event in pygame.event.get(): 
+                if event.type == pygame.MOUSEBUTTONDOWN:
+                    mousex, mousey = event.pos
+                    print(str(mousex) +','+ str(mousey))
+                    print(game_status)  
+                    if 500 > mousex > 50  and (qboxPosy + 50) > mousey > qboxPosy:
+                        if rightAnswerNo == 1:
+                                rightJingle.play(0)
+                                ExamScore = ExamScore + int(questionsList[4])
+                                generator = 0
+                                game_status = 'Exam Question 5'
+                        else:
+                                wrongJingle.play(0)
+                                generator = 0
+                                game_status = 'Exam Question 5'
+                                
+                            
+                    elif 500 > mousex > 50  and ((qboxPosy + 100) + 50) > mousey > (qboxPosy + 100):
+                        if rightAnswerNo == 2:
+                                rightJingle.play(0)
+                                ExamScore = ExamScore + int(questionsList[4])
+                                generator = 0
+                                game_status = 'Exam Question 5'
+                        else:
+                                wrongJingle.play(0)
+                                generator = 0
+                                game_status = 'Exam Question 5'
+                            
+                    elif 500 > mousex > 50  and ((qboxPosy + 200) + 50) > mousey > (qboxPosy + 200):
+                        if rightAnswerNo == 3:
+                                rightJingle.play(0)
+                                ExamScore = ExamScore + int(questionsList[4])
+                                generator = 0
+                                game_status = 'Exam Question 5'
+                        else:
+                                wrongJingle.play(0)
+                                generator = 0
+                                game_status = 'Exam Question 5'
+
+
+while game_status == 'Exam Question 5':
+        while generator != 1:
+                script = open('script/Exam questions/' + game_status +'.txt', 'r')
+                lines = script.readlines()
+                randNo = random.randint(0,2)
+                questionsList = lines[randNo].split(', ')
+                generator = 1
+                print(questionsList)
+        win = pygame.display.set_mode((800,600))
+        
+        qBoxWidth = 500
+        qBoxLength = 50
+        qBoxPosX = 50
+        qboxPosy = 330
+        pygame.draw.rect(win,(255,0,0), (qBoxPosX, qboxPosy, qBoxWidth, qBoxLength))
+        pygame.draw.rect(win,(255,0,0), (qBoxPosX, (qboxPosy + 100), qBoxWidth, qBoxLength))
+        pygame.draw.rect(win,(255,0,0), (qBoxPosX, (qboxPosy + 200), qBoxWidth, qBoxLength))
+        font = pygame.font.Font('freesansbold.ttf', 32)
+        win.blit(font.render(questionsList[0], True, (255,255,255)),(50,230))
+        questionImg = pygame.transform.scale(pygame.image.load('pics/' + questionsList[5].rstrip('\n')), (269, 187))
+        win.blit(questionImg,(50,25))
+        if ' - right' in questionsList[1]:
+                rightAnswer = questionsList[1].replace(" - right", "")
+                win.blit(font.render(questionsList[1].replace(" - right", ""), True, (255,255,255)),(50,330))
+                rightAnswerNo = 1
+        else:
+                win.blit(font.render(questionsList[1], True, (255,255,255)),(50,330))
+
+        if ' - right' in questionsList[2]:
+                rightAnswer = questionsList[2].replace(" - right", "")
+                win.blit(font.render(questionsList[2].replace(" - right", ""), True, (255,255,255)),(50,430))
+                rightAnswerNo = 2
+        else:
+                win.blit(font.render(questionsList[2], True, (255,255,255)),(50,430))
+                
+        if ' - right' in questionsList[3]:
+                rightAnswer = questionsList[3].replace(" - right", "")
+                win.blit(font.render(questionsList[3].replace(" - right", ""), True, (255,255,255)),(50,530))
+                rightAnswerNo = 3
+        else:
+                win.blit(font.render(questionsList[3], True, (255,255,255)),(50,530))
+                
+        pygame.display.update()
+        for event in pygame.event.get(): 
+                if event.type == pygame.MOUSEBUTTONDOWN:
+                    mousex, mousey = event.pos
+                    print(str(mousex) +','+ str(mousey))
+                    print(game_status)  
+                    if 500 > mousex > 50  and (qboxPosy + 50) > mousey > qboxPosy:
+                        if rightAnswerNo == 1:
+                                rightJingle.play(0)
+                                ExamScore = ExamScore + int(questionsList[4])
+                                game_status = 'End Exam'
+                        else:
+                                wrongJingle.play(0)
+                                game_status = 'End Exam'
+                                
+                            
+                    elif 500 > mousex > 50  and ((qboxPosy + 100) + 50) > mousey > (qboxPosy + 100):
+                        if rightAnswerNo == 2:
+                                rightJingle.play(0)
+                                ExamScore = ExamScore + int(questionsList[4])
+                                game_status = 'End Exam'
+                        else:
+                                wrongJingle.play(0)
+                                game_status = 'End Exam'
+                            
+                    elif 500 > mousex > 50  and ((qboxPosy + 200) + 50) > mousey > (qboxPosy + 200):
+                        if rightAnswerNo == 3:
+                                rightJingle.play(0)
+                                ExamScore = ExamScore + int(questionsList[4])
+                                game_status = 'End Exam'
+                        else:
+                                wrongJingle.play(0)
+                                game_status = 'End Exam'    
+        
+
         
                 
 
