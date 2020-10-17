@@ -6,8 +6,8 @@ filedir = os.path.dirname(filepath)
 pygame.init()
 pygame.font.init()
 pygame.mixer.init()
-pygame.mixer.music.load(str('Music\Persona 3 OST - During the Test (Extended).mp3'))
-game_status = 'Exam Question 1'
+pygame.mixer.music.load(filedir + str('\Music\Persona 3 OST - During the Test (Extended).mp3'))
+game_status = 'start'
 scriptLine = 0
 questionLine = 0
 name = ''
@@ -29,7 +29,7 @@ while game_status == 'start':
         vol = 5
         pygame.draw.rect(win,(255,0,0), (x, y, width, height))
         font = pygame.font.Font('freesansbold.ttf', 32)
-        text = font.render('Last Minute Simulator', True, (255,255,255))
+        text = font.render('Exam Simulator', True, (255,255,255))
         win.blit(text,(250,260))
         pygame.display.update()
         for event in pygame.event.get(): 
@@ -39,13 +39,12 @@ while game_status == 'start':
                     print(game_status)  
                     if 550 > mousex > 250  and 300 > mousey > 250:
                             game_status = 'intro'
-                            print('Link start')
                             pygame.mixer.music.play(-1)
 
 
 while game_status == 'intro':
         win = pygame.display.set_mode((800,600))
-        script = open('script/' + game_status + '.txt', 'r')
+        script = open(filedir + '/script/' + game_status + '.txt', 'r')
         lines = script.readlines()
         if lines[questionLine].startswith('Question'):
                 theQuestion = (lines[questionLine][13:])
@@ -60,7 +59,7 @@ while game_status == 'intro':
                 text = font.render(str(lines[scriptLine]), True, (255,255,255))
                 win.blit(text,(50,50))
                 questionLine = scriptLine
-        teacher = pygame.transform.scale(pygame.image.load('pics\P3_Edogawa_Render.png'), (350, 450))
+        teacher = pygame.transform.scale(pygame.image.load(filedir + '\pics\P3_Edogawa_Render.png'), (350, 450))
         win.blit(teacher,(450,260))
         pygame.display.update()  
         for event in pygame.event.get():
@@ -70,7 +69,6 @@ while game_status == 'intro':
                                   
 while game_status == 'chooseName':
         win = pygame.display.set_mode((800,600))
-        teacher = pygame.transform.scale(pygame.image.load('pics\P3_Edogawa_Render.png'), (350, 450))
         win.blit(teacher,(450,260))
         qBoxWidth = 150
         qBoxLength = 50
@@ -104,9 +102,9 @@ while game_status == 'chooseName':
                             
 while game_status == 'name choosen':
         win = pygame.display.set_mode((800,600))
-        teacher = pygame.transform.scale(pygame.image.load('pics\P3_Edogawa_Render.png'), (350, 450))
+        teacher = pygame.transform.scale(pygame.image.load(filedir + '\pics\P3_Edogawa_Render.png'), (350, 450))
         win.blit(teacher,(450,260))
-        script = open('script/' + game_status + '.txt', 'r')
+        script = open(filedir + '/script/' + game_status + '.txt', 'r')
         lines = script.readlines()
         font = pygame.font.Font('freesansbold.ttf', 32)
         try:
@@ -128,9 +126,9 @@ while game_status == 'name choosen':
                                   scriptLine = scriptLine + 1
 while game_status == 'Exam Hall':
         win = pygame.display.set_mode((800,600))
-        teacher = pygame.transform.scale(pygame.image.load('pics\exam_teacher.png'), (300, 450))
+        teacher = pygame.transform.scale(pygame.image.load(filedir + '\pics\exam_teacher.png'), (300, 450))
         win.blit(teacher,(450,260))
-        script = open('script/' + game_status + '.txt', 'r')
+        script = open(filedir + '/script/' + game_status + '.txt', 'r')
         lines = script.readlines()
         font = pygame.font.Font('freesansbold.ttf', 32)
         try:
@@ -152,11 +150,10 @@ while game_status == 'Exam Hall':
                         if event.key == pygame.K_SPACE:
                                   scriptLine = scriptLine + 1
 while game_status == 'Exam Teacher Mood':
-        script = open('script/' + game_status + '.txt', 'r')
+        script = open(filedir + '/script/' + game_status + '.txt', 'r')
         questionLine = 0
         lines = script.readlines()
         win = pygame.display.set_mode((800,600))
-        teacher = pygame.transform.scale(pygame.image.load('pics\exam_teacher.png'), (350, 450))
         win.blit(teacher,(450,260))
         qBoxWidth = 500
         qBoxLength = 50
@@ -193,9 +190,8 @@ while game_status == 'Exam Teacher Mood':
                             
 while game_status == 'ExamTeach':
         win = pygame.display.set_mode((800,600))
-        teacher = pygame.transform.scale(pygame.image.load('pics\exam_teacher.png'), (350, 450))
         win.blit(teacher,(450,260))
-        script = open('script/' + game_status + '.txt', 'r')
+        script = open(filedir + '/script/' + game_status + '.txt', 'r')
         lines = script.readlines()
         font = pygame.font.Font('freesansbold.ttf', 32)
         if TeacherMood == 'Angry':
@@ -251,14 +247,14 @@ while game_status == 'ExamTeach':
 
 
 pygame.mixer.music.stop()
-pygame.mixer.music.load("music\So Boring - Persona 5.mp3")
+pygame.mixer.music.load(filedir + '\music\So Boring - Persona 5.mp3')
 pygame.mixer.music.play(-1)
 while game_status == 'Exam start':
         font = pygame.font.Font('C:\WINDOWS\FONTS\LHANDW.TTF', 32)
         text = font.render('Exam started', True, (255,255,255))
         win.blit(text,(250,260))
         win = pygame.display.set_mode((800,600))
-        script = open('script/' + game_status + '.txt', 'r')
+        script = open(filedir + '/script/' + game_status + '.txt', 'r')
         lines = script.readlines()
         font = pygame.font.Font('C:\WINDOWS\FONTS\LHANDW.TTF', 32)
         try:
@@ -281,13 +277,13 @@ while game_status == 'Exam start':
                                   scriptLine = scriptLine + 1
 
 
-rightJingle = pygame.mixer.Sound('music\Persona 4 - Social Link Jingle.wav')
-wrongJingle = pygame.mixer.Sound('music\Turning Page - Sound Effect .wav')
+rightJingle = pygame.mixer.Sound(filedir + '\music\Persona 4 - Social Link Jingle.wav')
+wrongJingle = pygame.mixer.Sound(filedir + '\music\Turning Page - Sound Effect .wav')
 
                                   
 while game_status == 'Exam Question 1':
         while generator != 1:
-                script = open('script/Exam questions/' + game_status +'.txt', 'r')
+                script = open(filedir + '/script/Exam questions/' + game_status +'.txt', 'r')
                 lines = script.readlines()
                 randNo = random.randint(0,2)
                 questionsList = lines[randNo].split(', ')
@@ -304,7 +300,7 @@ while game_status == 'Exam Question 1':
         pygame.draw.rect(win,(255,0,0), (qBoxPosX, (qboxPosy + 200), qBoxWidth, qBoxLength))
         font = pygame.font.Font('freesansbold.ttf', 32)
         win.blit(font.render(questionsList[0], True, (255,255,255)),(50,230))
-        questionImg = pygame.transform.scale(pygame.image.load('pics/' + questionsList[5].rstrip('\n')), (269, 187))
+        questionImg = pygame.transform.scale(pygame.image.load(filedir + '/pics/' + questionsList[5].rstrip('\n')), (269, 187))
         win.blit(questionImg,(50,25))
         if ' - right' in questionsList[1]:
                 rightAnswer = questionsList[1].replace(" - right", "")
@@ -370,7 +366,7 @@ while game_status == 'Exam Question 1':
                                 
 while game_status == 'Exam Question 2':
         while generator != 1:
-                script = open('script/Exam questions/' + game_status +'.txt', 'r')
+                script = open(filedir + '/script/Exam questions/' + game_status +'.txt', 'r')
                 lines = script.readlines()
                 randNo = random.randint(0,2)
                 questionsList = lines[randNo].split(', ')
@@ -387,7 +383,7 @@ while game_status == 'Exam Question 2':
         pygame.draw.rect(win,(255,0,0), (qBoxPosX, (qboxPosy + 200), qBoxWidth, qBoxLength))
         font = pygame.font.Font('freesansbold.ttf', 32)
         win.blit(font.render(questionsList[0], True, (255,255,255)),(50,230))
-        questionImg = pygame.transform.scale(pygame.image.load('pics/' + questionsList[5].rstrip('\n')), (269, 187))
+        questionImg = pygame.transform.scale(pygame.image.load(filedir + '/pics/' + questionsList[5].rstrip('\n')), (269, 187))
         win.blit(questionImg,(50,25))
         if ' - right' in questionsList[1]:
                 rightAnswer = questionsList[1].replace(" - right", "")
@@ -454,7 +450,7 @@ while game_status == 'Exam Question 2':
 
 while game_status == 'Exam Question 3':
         while generator != 1:
-                script = open('script/Exam questions/' + game_status +'.txt', 'r')
+                script = open(filedir + '/script/Exam questions/' + game_status +'.txt', 'r')
                 lines = script.readlines()
                 randNo = random.randint(0,2)
                 questionsList = lines[randNo].split(', ')
@@ -471,7 +467,7 @@ while game_status == 'Exam Question 3':
         pygame.draw.rect(win,(255,0,0), (qBoxPosX, (qboxPosy + 200), qBoxWidth, qBoxLength))
         font = pygame.font.Font('freesansbold.ttf', 32)
         win.blit(font.render(questionsList[0], True, (255,255,255)),(50,230))
-        questionImg = pygame.transform.scale(pygame.image.load('pics/' + questionsList[5].rstrip('\n')), (269, 187))
+        questionImg = pygame.transform.scale(pygame.image.load(filedir + '/pics/' + questionsList[5].rstrip('\n')), (269, 187))
         win.blit(questionImg,(50,25))
         if ' - right' in questionsList[1]:
                 rightAnswer = questionsList[1].replace(" - right", "")
@@ -538,7 +534,7 @@ while game_status == 'Exam Question 3':
 
 while game_status == 'Exam Question 4':
         while generator != 1:
-                script = open('script/Exam questions/' + game_status +'.txt', 'r')
+                script = open(filedir + '/script/Exam questions/' + game_status +'.txt', 'r')
                 lines = script.readlines()
                 randNo = random.randint(0,2)
                 questionsList = lines[randNo].split(', ')
@@ -555,7 +551,7 @@ while game_status == 'Exam Question 4':
         pygame.draw.rect(win,(255,0,0), (qBoxPosX, (qboxPosy + 200), qBoxWidth, qBoxLength))
         font = pygame.font.Font('freesansbold.ttf', 32)
         win.blit(font.render(questionsList[0], True, (255,255,255)),(50,230))
-        questionImg = pygame.transform.scale(pygame.image.load('pics/' + questionsList[5].rstrip('\n')), (269, 187))
+        questionImg = pygame.transform.scale(pygame.image.load(filedir + '/pics/' + questionsList[5].rstrip('\n')), (269, 187))
         win.blit(questionImg,(50,25))
         if ' - right' in questionsList[1]:
                 rightAnswer = questionsList[1].replace(" - right", "")
@@ -621,7 +617,7 @@ while game_status == 'Exam Question 4':
 
 while game_status == 'Exam Question 5':
         while generator != 1:
-                script = open('script/Exam questions/' + game_status +'.txt', 'r')
+                script = open(filedir + '/script/Exam questions/' + game_status +'.txt', 'r')
                 lines = script.readlines()
                 randNo = random.randint(0,2)
                 questionsList = lines[randNo].split(', ')
@@ -638,7 +634,7 @@ while game_status == 'Exam Question 5':
         pygame.draw.rect(win,(255,0,0), (qBoxPosX, (qboxPosy + 200), qBoxWidth, qBoxLength))
         font = pygame.font.Font('freesansbold.ttf', 32)
         win.blit(font.render(questionsList[0], True, (255,255,255)),(50,230))
-        questionImg = pygame.transform.scale(pygame.image.load('pics/' + questionsList[5].rstrip('\n')), (269, 187))
+        questionImg = pygame.transform.scale(pygame.image.load(filedir + '/pics/' + questionsList[5].rstrip('\n')), (269, 187))
         win.blit(questionImg,(50,25))
         if ' - right' in questionsList[1]:
                 rightAnswer = questionsList[1].replace(" - right", "")
