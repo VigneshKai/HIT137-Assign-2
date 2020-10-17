@@ -6,7 +6,7 @@ filedir = os.path.dirname(filepath)
 pygame.init()
 pygame.font.init()
 pygame.mixer.init()
-pygame.mixer.music.load(filedir + str('\Music\Persona 3 OST - During the Test (Extended).mp3'))
+pygame.mixer.music.load(filedir + str('\Music\Life Goes On - Persona 5.mp3'))
 game_status = 'start'
 scriptLine = 0
 questionLine = 0
