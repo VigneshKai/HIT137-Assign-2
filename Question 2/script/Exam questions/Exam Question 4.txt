@@ -1,3 +1,3 @@
-Question 1: what is a donkey, Monkey, Donkey - right, Chonkey, 1, donkey.jpg
-Question 1: what is a donkey, Monkey, Donkey - right, Chonkey, 1, donkey.jpg
-Question 1: what is a Monkey, Monkey - right, Donkey, Chonkey, 1, monkey.jpg
+4: Where is the Statue of Liberty? , United States of America - right, Australia, Over there, 1, liberty.jpg
+4: Where is the Taj Mahal?, Pakistan, India - right, United Arab Emirates, 1, taj.jpg
+4: Where is the Juche Tower?, North Korea - right, South Korea, China, 1, juche.jpg

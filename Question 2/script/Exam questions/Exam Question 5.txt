@@ -1,3 +1,3 @@
-Question 1: what is a donkey, Monkey, Donkey - right, Chonkey, 1, donkey.jpg
-Question 1: what is a donkey, Monkey, Donkey - right, Chonkey, 1, donkey.jpg
-Question 1: what is a Monkey, Monkey - right, Donkey, Chonkey, 1, monkey.jpg
+5: what's the largest animal on earth?, Elephant, Blue Whale - right, Donkey, 1, donkey.jpg
+5: Which of these is considered an Arachinid? - right, Plesiosiro, Lobster, Crab, 1, arach.png
+5: Involved with an English idiom about weather?, Dogs - right, Cows, Snails, 1, rain.jpg

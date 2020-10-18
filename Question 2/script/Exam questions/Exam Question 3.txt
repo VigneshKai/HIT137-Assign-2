@@ -1,3 +1,3 @@
-Question 1: what is a donkey, Monkey, Donkey - right, Chonkey, 1, donkey.jpg
-Question 1: what is a donkey, Monkey, Donkey - right, Chonkey, 1, donkey.jpg
-Question 1: what is a Monkey, Monkey - right, Donkey, Chonkey, 1, monkey.jpg
+3: What is the capital of Portugal?, Paris, Lisbon - right, Canberra, 1, portugal.png
+3: What is the capital of Spain?, Barcelona, Madrid - right, Valencia, 1, spain.png
+3: what is the capital of Canda?, Ottawa - right, Toronto, Vancover, 1, Canada.png

@@ -1,3 +1,3 @@
-Question 1: what is a donkey, Monkey, Donkey - right, Chonkey, 1, donkey.jpg
-Question 1: what is a donkey, Monkey, Donkey - right, Chonkey, 1, donkey.jpg
-Question 1: what is a Monkey, Monkey - right, Donkey, Chonkey, 1, monkey.jpg
+Question 1: When was python released?, December 1989 - right, Novemeber 2005, Janurary 1994, 1, python-logo.png
+Question 1: Which of these lines is the longest?, Top, All of them are the same size - right, Bottom, 1, riddle1.jpg
+Question 1: When was sql first released?, 1974 - right, 1976, 1979, 1, sql.png
